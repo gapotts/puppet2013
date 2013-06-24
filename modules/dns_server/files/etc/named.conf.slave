@@ -1,0 +1,42 @@
+
+options {
+  directory       "/var/named";
+  pid-file        "/var/run/named/pid";
+  dump-file       "/var/run/named/dump.db";
+  statistics-file "/var/run/named/stats";
+
+  allow-query     { 127.0.0.0/8; 10.0.0.0/24; };
+  allow-transfer  { 127.0.0.0/8; 10.0.0.0/24; };
+
+  notify          yes;
+};
+
+zone "." in {
+  type hint;
+  file "root.hint";
+};
+
+zone "localhost" in {
+  type slave;
+  file "slave/localhost.zone";
+  masters { 10.0.0.100; }
+};
+
+zone "127.in-addr.arpa" in {
+  type slave;
+  file "slave/127.in-addr.arpa.zone";
+  masters { 10.0.0.100; }
+};
+
+zone "puppetclass.taoslab.com" in {
+  type slave;
+  file "slave/puppetclass.taoslab.com.zone";
+  masters { 10.0.0.100; }
+};
+
+zone "0.0.10.in-addr.arpa" in {
+  type slave;
+  file "slave/0.0.10.in-addr.arpa.zone";
+  masters { 10.0.0.100; }
+};
+
