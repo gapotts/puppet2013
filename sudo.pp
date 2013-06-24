@@ -1,13 +1,15 @@
-package { 'sudo':
-  ensure   => 'installed',
-  provider => 'yum',
+class sudo {
+  package { 'sudo':
+    ensure => 'installed',
+  }
+  
+  file { '/etc/sudoers':
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0440',
+    content => "%wheel\tALL = (ALL) NOPASSWD: ALL\n",
+    require => Package['sudo'],
+  }
 }
 
-file { '/etc/sudoers':
-  ensure  => 'present',
-  owner   => 'root',
-  group   => 'root',
-  mode    => '0440',
-  content => "%wheel\tALL = (ALL) NOPASSWD: ALL\n",
-  require => Package['sudo'],
-}
+include sudo
