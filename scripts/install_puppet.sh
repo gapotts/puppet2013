@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FACTER_VERSION="1.7.1"
+FACTER_VERSION="1.6.18"
 PUPPET_VERSION="3.2.2"
 
 yum -y install wget ruby rubygems
