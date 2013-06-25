@@ -12,7 +12,9 @@ node default {
 }
 
 node 'dns.puppetclass.taoslab.com' inherits default {
-  include dns_server::master
+  class { 'dns_server':
+    type => 'master',
+  }
 }
 
 node 'puppet.puppetclass.taoslab.com' inherits default {
