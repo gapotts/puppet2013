@@ -1,4 +1,4 @@
-class dns_server ($type = 'master') {
+class dns_server ($type = 'master', $masters = undef) {
 
   package { 'bind':
     ensure   => installed,
@@ -28,7 +28,7 @@ class dns_server ($type = 'master') {
     mode    => '0444',
     owner   => 'root',
     group   => 'named',
-    source  => "puppet:///modules/dns_server/etc/named.conf.${type}",
+    content => template('dns/etc/named.conf.erb'),
     notify  => Service['named'],
   }
 

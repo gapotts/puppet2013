@@ -1,0 +1,67 @@
+<% server_type = scope.lookupvar('dns::server::type') -%>
+
+options {
+  directory       "/var/named";
+  pid-file        "/var/run/named/pid";
+  dump-file       "/var/run/named/dump.db";
+  statistics-file "/var/run/named/stats";
+
+  allow-query     { 127.0.0.0/8; 10.0.0.0/24; };
+  allow-transfer  { 127.0.0.0/8; 10.0.0.0/24; };
+
+  notify          yes;
+};
+
+zone "." in {
+  type hint;
+  file "root.hint";
+};
+
+zone "localhost" in {
+  type <%= server_type %>;
+  file "<%= server_type %>/localhost.zone";
+  <% if server_type == 'slave' -%>
+  masters {
+    <% masters.each do |master| -%>
+    <%= master %>
+    <% end -%>
+  }
+  <% end -%>
+};
+
+zone "127.in-addr.arpa" in {
+  type <%= server_type %>;
+  file "<%= server_type %>/127.in-addr.arpa.zone";
+  <% if server_type == 'slave' -%>
+  masters {
+    <% masters.each do |master| -%>
+    <%= master %>
+    <% end -%>
+  }
+  <% end -%>
+};
+
+zone "puppetclass.taoslab.com" in {
+  type <%= server_type %>;
+  file "<%= server_type %>/puppetclass.taoslab.com.zone";
+  <% if server_type == 'slave' -%>
+  masters {
+    <% masters.each do |master| -%>
+    <%= master %>
+    <% end -%>
+  }
+  <% end -%>
+};
+
+zone "0.0.10.in-addr.arpa" in {
+  type <%= server_type %>;
+  file "<%= server_type %>/0.0.10.in-addr.arpa.zone";
+  <% if server_type == 'slave' -%>
+  masters {
+    <% masters.each do |master| -%>
+    <%= master %>
+    <% end -%>
+  }
+  <% end -%>
+};
+
