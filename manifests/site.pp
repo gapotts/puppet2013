@@ -9,6 +9,8 @@ node default {
   include dns_client
   include iptables::disabled
   include sudo
+  include cron
+  include puppet_standalone
 }
 
 node 'dns.puppetclass.taoslab.com' inherits default {
