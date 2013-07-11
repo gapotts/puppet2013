@@ -1,5 +1,5 @@
 @                IN SOA  dns.puppetclass.taoslab.com. mdelaney.taos.com. (
-                                                    2012021901  ; Serial
+                                                    2013071000  ; Serial
                                                     10800       ; Refresh
                                                     3600        ; Retry
                                                     60480       ; Expire
@@ -8,9 +8,8 @@
 
                               IN NS           dns.puppetclass.taoslab.com.
 
-dns                           IN A            10.0.0.100
-puppet                        IN A            10.0.0.101
-ldap                          IN A            10.0.0.102
-web                           IN A            10.0.0.103
-db                            IN A            10.0.0.104
-
+jump                          IN A            10.0.0.100
+dns                           IN A            10.0.0.101
+puppet                        IN A            10.0.0.102
+web                           IN A            10.0.0.104
+db                            IN A            10.0.0.105
