@@ -1,6 +1,7 @@
-
-class git::server {
-  include git
+class git_server {
+  package { 'git':
+    ensure => 'installed',
+  }
 
   file { '/srv/gitrepos':
     ensure => 'directory',

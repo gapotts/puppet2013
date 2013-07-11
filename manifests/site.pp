@@ -18,5 +18,5 @@ node 'dns.puppetclass.taoslab.com' inherits default {
 }
 
 node 'puppet.puppetclass.taoslab.com' inherits default {
-  include git::puppetrepo
+  git_server::repo { 'puppet': }
 }
