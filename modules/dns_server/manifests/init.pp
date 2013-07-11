@@ -28,7 +28,7 @@ class dns_server ($type = 'master', $masters = undef) {
     mode    => '0444',
     owner   => 'root',
     group   => 'named',
-    content => template('dns/etc/named.conf.erb'),
+    content => template('dns_server/etc/named.conf.erb'),
     notify  => Service['named'],
   }
 
