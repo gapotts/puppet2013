@@ -22,3 +22,4 @@ mkdir -p /var/tmp/src
   ( cd puppet-${PUPPET_VERSION} && ruby ./install.rb )
 )
 
+gem install hiera
