@@ -7,8 +7,8 @@ class puppet_master::service {
   }
 
   service { 'puppetmaster':
-    ensure  => 'running',
-    enable  => true,
+    ensure  => 'stopped',
+    enable  => false,
   }
 
   File['/etc/init.d/puppetmaster'] -> Service['puppetmaster']

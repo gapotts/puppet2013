@@ -19,6 +19,12 @@ node 'dns.puppetclass.taoslab.com' inherits default {
 }
 
 node 'puppet.puppetclass.taoslab.com' inherits default {
+  include yum::epel
+  include apache
+  apache::vhost { 'puppetmaster': }
   include puppet_master
   git_server::repo { 'puppet': }
+
+  Class['yum::epel'] ->
+  Class['apache']
 }
