@@ -10,7 +10,6 @@ node default {
   include iptables::disabled
   include sudo
   include cron
-  include puppet_standalone
 }
 
 node 'dns.puppetclass.taoslab.com' inherits default {
@@ -20,5 +19,6 @@ node 'dns.puppetclass.taoslab.com' inherits default {
 }
 
 node 'puppet.puppetclass.taoslab.com' inherits default {
+  include puppet_master
   git_server::repo { 'puppet': }
 }
