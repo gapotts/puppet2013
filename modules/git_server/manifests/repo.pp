@@ -1,9 +1,9 @@
-define git_server::repo {
+define git_server::repo ( $group = 'wheel' ) {
   include git_server
 
   file { "/srv/gitrepos/${name}":
     ensure => 'directory',
-    group  => 'wheel',
+    group  => $group,
     mode   => '2770',
   }
 
